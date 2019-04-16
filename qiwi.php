@@ -10,26 +10,19 @@ class Qiwi {
     }
 
     //Get active webhook
-    private function get_hook() {
+    public function get_hook() {
         $answer = json_decode($this->request(
             '/payment-notifier/v1/hooks/active',
             'GET'
         ));
         //If there is an active WebHook, then return its id
         if ($answer->hookId) {
-            return $answer->hookId;
+            return $answer;
         } else {
             return false;
         }
     }
-    //Get last webhook url
-    public function getLastHookUrl() {
-        $answer = json_decode($this->request(
-            '/payment-notifier/v1/hooks/active',
-            'GET'
-        ));
-        return $answer->hookParameters->url;
-    }
+
     //Put new hook
     private function put_hook($url) {
         $answer = json_decode($this->request(
@@ -56,10 +49,10 @@ class Qiwi {
     }
     //Add hook
     public function set_hook_url($url) {
-        $hook_id = $this->get_hook();
+        $hook = $this->get_hook();
         //Если есть hook, то удаляем его
-        if ($hook_id) {
-            $this->delete_hook($hook_id);
+        if ($hook) {
+            $this->delete_hook($hook->hookId);
         }
         return $this->put_hook($url)->hookId;
     }

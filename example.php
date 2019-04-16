@@ -1,7 +1,7 @@
 <?php
 require_once("qiwi.php");
 
-$qiwi = new Qiwi('12543a5b8fbdccf55ffeba9f5391133f'); //Init class by API token
+$qiwi = new Qiwi('API_TOKEN'); //Init class by API token
 
 
 $hook_id = $qiwi->set_hook_url('https://example.com/callback/qiwi'); //Set new hook
