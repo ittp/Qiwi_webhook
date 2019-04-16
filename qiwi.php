@@ -22,6 +22,14 @@ class Qiwi {
             return false;
         }
     }
+    //Get last webhook url
+    public function getLastHookUrl() {
+        $answer = json_decode($this->request(
+            '/payment-notifier/v1/hooks/active',
+            'GET'
+        ));
+        return $answer->hookParameters->url;
+    }
     //Put new hook
     private function put_hook($url) {
         $answer = json_decode($this->request(
