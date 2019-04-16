@@ -21,6 +21,6 @@ This method is used to retrieve the hook's private key.
 
 This method is used to send a test notification to the hook.
 
-```$qiwi->getLastHookUrl();```
+```$qiwi->get_hook();```
 
-This method is used to get last webhook url
+This method is used to get info about webhook.
